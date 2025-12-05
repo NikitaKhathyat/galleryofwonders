@@ -2,6 +2,7 @@ package com.example.minorproject.artcurator.controller;
 
 
 import com.example.minorproject.artcurator.model.Comment;
+import com.example.minorproject.artcurator.model.User;
 import com.example.minorproject.artcurator.model.Wonder;
 import com.example.minorproject.artcurator.repository.CommentRepository;
 import com.example.minorproject.artcurator.repository.WonderRepository;
@@ -42,7 +43,7 @@ public class WonderController {
 
     // LIKE WONDER
     @PostMapping("/{id}/like")
-    public Wonder like(@PathVariable String id, @RequestParam String userId) {
+    public Wonder like(@PathVariable String id, @RequestParam User userId) {
         Wonder w = wonderRepository.findById(id).orElseThrow();
         w.getLikes().add(userId);
         return wonderRepository.save(w);
@@ -56,21 +57,5 @@ public class WonderController {
         return wonderRepository.save(w);
     }
 
-    // ADD COMMENT
-    @PostMapping("/{id}/comments")
-    public Comment addComment(@PathVariable String id, @RequestBody Comment comment) {
-        Comment saved = commentRepository.save(comment);
-        Wonder w = wonderRepository.findById(id).orElseThrow();
-        w.getComments().add(saved.getId());
-        wonderRepository.save(w);
-        return saved;
-    }
-
-    // GET COMMENTS
-    @GetMapping("/{id}/comments")
-    public Object getComments(@PathVariable String id) {
-        Wonder w = wonderRepository.findById(id).orElseThrow();
-        return commentRepository.findAllById(w.getComments());
-    }
 }
 
