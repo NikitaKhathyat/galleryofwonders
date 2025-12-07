@@ -57,21 +57,5 @@ public class WonderController {
         return wonderRepository.save(w);
     }
 
-    // ADD COMMENT
-    @PostMapping("/{id}/comments")
-    public Comment addComment(@PathVariable String id, @RequestBody Comment comment) {
-        Comment saved = commentRepository.save(comment);
-        Wonder w = wonderRepository.findById(id).orElseThrow();
-        w.getComments().add(saved);
-        wonderRepository.save(w);
-        return saved;
-    }
-
-//    // GET COMMENTS
-//    @GetMapping("/{id}/comments")
-//    public Object getComments(@PathVariable String id) {
-//        Wonder w = wonderRepository.findById(id).orElseThrow();
-//        return commentRepository.findAllById();
-//    }
 }
 
