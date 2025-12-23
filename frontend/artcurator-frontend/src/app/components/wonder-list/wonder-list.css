@@ -1,0 +1,14 @@
+.wonder-list-grid {
+  /* columns: 300px; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  justify-items: center; 
+}
+
+
+app-wonder-card {
+    /* display: block; */
+  width: 100%; /* ensure card fills the grid column */
+}

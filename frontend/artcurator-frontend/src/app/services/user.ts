@@ -11,12 +11,28 @@ export class UserService{
 
   constructor(private http: HttpClient) {}
 
-  create(user: User): Observable<User> {
-    return this.http.post<User>(this.baseUrl, user);
+  register(user: any) {
+    return this.http.post(`${this.baseUrl}/register`, user);
   }
 
-  getById(id: string): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/${id}`);
+  getUser(id: string) {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  updateUser(id: string, user: any) {
+    return this.http.put(`${this.baseUrl}/${id}`, user);
+  }
+
+  getBookmarks(id: string) {
+    return this.http.get(`${this.baseUrl}/${id}/bookmarks`);
+  }
+
+  getCollections(id: string) {
+    return this.http.get(`${this.baseUrl}/${id}/collections`);
+  }
+
+  getUserWonders(id: string) {
+    return this.http.get(`${this.baseUrl}/${id}/wonders`);
   }
 
 }

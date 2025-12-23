@@ -1,0 +1,56 @@
+<div class="modal-backdrop">
+  <div class="modal-card">
+
+    <div class="modal-header">
+      <h2>Add a New Wonder</h2>
+      <button class="close-btn">Close</button>
+    </div>
+
+    <form [formGroup]="wonderForm" (ngSubmit)="submit()"  enctype="multipart/form-data">
+
+      <!-- Name -->
+      <label>Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Enter wonder name"
+      />
+
+      <!-- Image -->
+      <label>Upload Image</label>
+      <input type="file" (change)="onFileChange($event)" />
+
+      <!-- Description -->
+      <label>Description</label>
+      <textarea
+        rows="4"
+        formControlName="description"
+        placeholder="Describe the wonder..."
+      ></textarea>
+
+      <!-- Tags -->
+      <label>Tags</label>
+      <div class="tags">
+        <div
+          class="tag-pill"
+          *ngFor="let tag of allTags"
+          [class.selected]="isTagSelected(tag)"
+          (click)="toggleTag(tag)"
+        >
+          {{ tag }}
+        </div>
+      </div>
+
+      <div class="selected">
+        Selected: {{ selectedTags.length }} tags
+      </div>
+
+      <!-- Submit -->
+      <button class="submit-btn" type="submit">
+        Add Wonder
+      </button>
+
+    </form>
+
+  </div>
+</div>

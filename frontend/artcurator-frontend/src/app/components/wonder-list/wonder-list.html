@@ -1,6 +1,14 @@
-<div class="grid">
-  <app-wonder-card 
-       *ngFor="let w of wonders"
-       [wonder]="w">
+<div class="wonder-list-grid">
+  <app-wonder-card
+    *ngFor="let wonder of wonders"
+    [imageUrl]="wonder.image.url"
+    [title]="wonder.name"
+    [avatarUrl]="wonder.user.avatarUrl || 'https://i.pravatar.cc/150?img=1'"
+    [username]="wonder.user.name"
+    [likes]="wonder.likes?.length || 0"
+    [commentsCount]="wonder.comments?.length || 0"
+    [liked]="isLikedByCurrentUser(wonder)"
+    (likeChanged)="handleLikeChange($event, wonder)"
+    (commentClicked)="handleCommentClick(wonder)">
   </app-wonder-card>
 </div>

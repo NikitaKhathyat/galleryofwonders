@@ -4,11 +4,14 @@ package com.example.minorproject.artcurator.controller;
 import com.example.minorproject.artcurator.model.User;
 import com.example.minorproject.artcurator.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
     private final UserRepository userRepository;
@@ -49,6 +52,7 @@ public class UserController {
     // GET USER WONDERS
     @GetMapping("/{userId}/wonders")
     public Object getUserWonders(@PathVariable String userId) {
+        log.info("getUserWonders,USer:{}",userId);
         return userRepository.findById(userId).orElseThrow().getPostedWonders();
     }
 

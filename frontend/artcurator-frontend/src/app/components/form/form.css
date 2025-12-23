@@ -1,0 +1,116 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background: #fff;
+  width: 600px;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  color: #2563eb;
+  margin: 0;
+}
+
+.close-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+label {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #c7d2fe;
+}
+
+textarea {
+  resize: none;
+}
+
+/* existing styles stay same */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #c7d2fe;
+  cursor: pointer;
+  font-size: 14px;
+  color: #2563eb;
+  background: #fff;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.tag-pill:hover {
+  background: #eef2ff;
+}
+
+.tag-pill.selected {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+
+.tag {
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.selected {
+  font-size: 14px;
+  color: #2563eb;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}

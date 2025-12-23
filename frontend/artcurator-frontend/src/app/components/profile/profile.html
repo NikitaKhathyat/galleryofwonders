@@ -1,0 +1,40 @@
+<div class="profile-header">
+  <img class="avatar" [src]="user.avatar" alt="profile" />
+
+  <h1 class="name">{{ user.name }}</h1>
+  <div class="username">@{{ user.username }}</div>
+
+  <p class="bio">{{ user.bio }}</p>
+
+  <div class="profile-actions">
+    <button class="btn btn-primary">Follow</button>
+    <button class="btn btn-secondary">Share</button>
+  </div>
+
+  <div class="tabs">
+    <div
+      class="tab"
+      [class.active]="activeTab === 'created'"
+      (click)="setTab('created')"
+    >
+      Created
+    </div>
+    <div
+      class="tab"
+      [class.active]="activeTab === 'saved'"
+      (click)="setTab('saved')"
+    >
+      Saved
+    </div>
+  </div>
+    <!-- CREATED WONDERS -->
+  <div *ngIf="activeTab === 'created'" class="grid">
+    <div class="card" *ngFor="let wonder of createdWonders">
+      <img [src]="getImageUrl(wonder.image)" />
+      <h4>{{ wonder.name }}</h4>
+    </div>
+  </div>
+
+</div>
+
+

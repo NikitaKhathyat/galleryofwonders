@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.profile-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.username {
+  color: #666;
+  margin: 4px 0 12px;
+}
+
+.bio {
+  max-width: 500px;
+  margin: 0 auto 16px;
+  color: #444;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #e60023;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #efefef;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+.tab {
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-bottom: 3px solid #111;
+}
+
+/* Masonry grid */
+.grid-container {
+  padding: 20px;
+  column-count: 5;
+  column-gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .grid-container {
+    column-count: 4;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-container {
+    column-count: 2;
+  }
+}
+
+.pin {
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  break-inside: avoid;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.pin img {
+  width: 100%;
+  display: block;
+}
+
+.pin-info {
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 14px;
+}

@@ -1,5 +1,6 @@
 package com.example.minorproject.artcurator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -22,7 +23,7 @@ public class Wonder {
 
     private String name;
 
-    private Image image;
+    private String image;
 
     private String description;
 
@@ -32,9 +33,11 @@ public class Wonder {
     private User user;
 
     @DBRef
+    @JsonIgnore
     private List<User> likes;
 
     @DBRef
+    @JsonIgnore
     private List<Comment> comments;
 
     @CreatedDate

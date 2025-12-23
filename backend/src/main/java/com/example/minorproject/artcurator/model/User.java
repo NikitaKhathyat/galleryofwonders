@@ -1,5 +1,6 @@
 package com.example.minorproject.artcurator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -16,12 +17,13 @@ public class User {
 
     @Id
     private String id;
-
+    private String password;
     private String name;
     private String email;
     private String image;
 
     @DBRef
+    @JsonIgnore
     private List<Wonder> postedWonders;
 
     @DBRef

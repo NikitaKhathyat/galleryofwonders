@@ -17,8 +17,8 @@ export class WonderService {
     return this.http.get<Wonder[]>(this.baseUrl);
   }
 
-  create(wonder: Wonder): Observable<Wonder> {
-    return this.http.post<Wonder>(this.baseUrl, wonder);
+   createWonder(wonder: any) {
+    return this.http.post(this.baseUrl, wonder);
   }
 
   addComment(wonderId: string, comment: Comment): Observable<Comment> {
