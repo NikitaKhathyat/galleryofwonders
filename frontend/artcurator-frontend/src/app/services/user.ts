@@ -23,9 +23,9 @@ export class UserService{
     return this.http.put(`${this.baseUrl}/${id}`, user);
   }
 
-  getBookmarks(id: string) {
-    return this.http.get(`${this.baseUrl}/${id}/bookmarks`);
-  }
+  // getBookmarks(id: string) {
+  //   return this.http.get(`${this.baseUrl}/${id}/bookmarks`);
+  // }
 
   getCollections(id: string) {
     return this.http.get(`${this.baseUrl}/${id}/collections`);
@@ -34,5 +34,27 @@ export class UserService{
   getUserWonders(id: string) {
     return this.http.get(`${this.baseUrl}/${id}/wonders`);
   }
+  
+
+  // SAVE BOOKMARK
+  saveBookmark(wonderId: string) {
+    return this.http.post(
+      `${this.baseUrl}/bookmarks/${wonderId}`,
+      {}
+    );
+  }
+
+  // REMOVE BOOKMARK
+  removeBookmark(wonderId: string) {
+    return this.http.delete(
+      `${this.baseUrl}/bookmarks/${wonderId}`
+    );
+  }
+
+  // GET MY BOOKMARKS (JWT-based)
+  getMyBookmarks() {
+    return this.http.get(`${this.baseUrl}/bookmarks`);
+  }
+
 
 }

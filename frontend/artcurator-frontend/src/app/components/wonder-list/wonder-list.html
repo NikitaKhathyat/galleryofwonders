@@ -1,4 +1,4 @@
-<div class="wonder-list-grid">
+<!-- <div class="wonder-list-grid">
   <app-wonder-card
     *ngFor="let wonder of wonders"
     [imageUrl]="wonder.image.url"
@@ -11,4 +11,21 @@
     (likeChanged)="handleLikeChange($event, wonder)"
     (commentClicked)="handleCommentClick(wonder)">
   </app-wonder-card>
+</div> -->
+<div class="feed">
+  <app-wonder-card
+  *ngFor="let wonder of wonders"
+  [wonder]="wonder"
+  [liked]="isLikedByCurrentUser(wonder)"
+  [saved]="isSavedByCurrentUser(wonder)"
+  (likeChanged)="handleLikeChange($event, wonder)"
+  (saveChanged)="handleSaveChange($event, wonder)"
+  (commentClicked)="handleCommentClick(wonder)">
+</app-wonder-card>
+
+<div *ngIf="page > maxPages" class="end">
+  You’re all caught up 🎉
+</div>
+
+  <div class="loader" *ngIf="loading">Loading...</div>
 </div>

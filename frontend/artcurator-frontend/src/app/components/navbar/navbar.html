@@ -1,13 +1,16 @@
 <nav class="navbar">
   <div class="logo">
-    <a routerLink="/wonders">Gallery of Wonders</a>
+    <a routerLink="/home">Gallery of Wonders</a>
   </div>
 
   <ul class="nav-links">
-    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/add-wonder" routerLinkActive="active">Add Wonder</a></li>
-    <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
-    <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
-    <li><a routerLink="/login">Logout</a></li>
+    <li *ngIf="loggedIn"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+<li *ngIf="loggedIn"><a routerLink="/add-wonder" routerLinkActive="active">Add Wonder</a></li>
+<li *ngIf="loggedIn"><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+<li *ngIf="loggedIn"><a (click)="logout()">Logout</a></li>
+
+<li *ngIf="!loggedIn"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+<li *ngIf="!loggedIn"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+
   </ul>
 </nav>

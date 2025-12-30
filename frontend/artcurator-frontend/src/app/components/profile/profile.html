@@ -34,6 +34,16 @@
       <h4>{{ wonder.name }}</h4>
     </div>
   </div>
+  <!-- SAVED WONDERS -->
+<!-- SAVED WONDERS -->
+<div *ngIf="activeTab === 'saved'" class="grid">
+  <div class="card" *ngFor="let wonder of savedWonders">
+    <img [src]="getImageUrl(wonder.image)" />
+    <h4>{{ wonder.name }}</h4>
+  </div>
+</div>
+
+
 
 </div>
 

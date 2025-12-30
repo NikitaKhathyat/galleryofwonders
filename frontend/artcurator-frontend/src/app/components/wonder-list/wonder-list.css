@@ -1,14 +1,57 @@
+/* 
 .wonder-list-grid {
-  /* columns: 300px; */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px; 
   padding: 16px;
-  justify-items: center; 
+  justify-items: center;
 }
 
+@media (max-width: 1200px) {
+  .wonder-list-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 948px) {
+  .wonder-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 770px) {
+  .wonder-list-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 app-wonder-card {
-    /* display: block; */
-  width: 100%; /* ensure card fills the grid column */
+  width: 100%;
+}
+ */
+.feed {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .feed {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed {
+    column-count: 1;
+  }
+}
+
+app-wonder-card {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.loader {
+  text-align: center;
+  padding: 20px;
 }

@@ -2,7 +2,7 @@ import { User } from './user.model';
 import { Comment } from './comment.model';
 
 export interface Wonder {
-  id?: string;
+  id: string;
   name: string;
   image: {
     url: string;

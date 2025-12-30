@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Dancing+Script:wght@400..700&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Lavishly+Yours&display=swap');
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -5,16 +7,19 @@
   padding: 12px 24px;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  /* position: sticky; */
+  /* top: 0;
+  z-index: 1000; */
 }
 
 .logo a {
-  font-size: 22px;
+  font-size: 2rem;
   font-weight: 700;
   color: #e60023; /* Pinterest red */
   text-decoration: none;
+   font-family: "Lavishly Yours", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .nav-links {
@@ -26,11 +31,47 @@
 .nav-links a {
   text-decoration: none;
   color: #333;
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
 .nav-links a.active,
 .nav-links a:hover {
   color: #e60023;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 4px 0;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover color + slight lift */
+.nav-links a:hover {
+  color: #e60023;
+  transform: translateY(-1px);
+}
+
+/* Underline animation */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #e60023;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
 }

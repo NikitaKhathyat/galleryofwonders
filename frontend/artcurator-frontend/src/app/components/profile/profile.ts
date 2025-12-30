@@ -11,23 +11,36 @@ import { ChangeDetectorRef } from '@angular/core';
 export class Profile implements OnInit {
 
    activeTab: 'created' | 'saved' = 'created';
-
+   savedWonders: any[] = [];
    user:any = null;
   createdWonders: any[] = [];
 
    constructor(private http: HttpClient,private cd: ChangeDetectorRef) {}
     
-   ngOnInit() {
-    const storedUser = localStorage.getItem('user');
+  //  ngOnInit() {
+  //   const storedUser = localStorage.getItem('user');
 
-    if (!storedUser) {
-      console.error('No logged-in user found');
-      return;
-    }
+  //   if (!storedUser) {
+  //     console.error('No logged-in user found');
+  //     return;
+  //   }
 
-    this.user = JSON.parse(storedUser);
-    this.loadCreatedWonders();
+  //   this.user = JSON.parse(storedUser);
+  //   this.loadCreatedWonders();
+  // }
+  ngOnInit() {
+  const storedUser = localStorage.getItem('user');
+  if (!storedUser) return;
+  this.user = JSON.parse(storedUser);
+
+  this.loadCreatedWonders();
+
+  // Load saved wonders from localStorage
+  const saved = localStorage.getItem('savedWonders');
+  if (saved) {
+    this.savedWonders = JSON.parse(saved);
   }
+}
 
 
 loadCreatedWonders() {
@@ -46,9 +59,18 @@ loadCreatedWonders() {
   }
   
 
-  setTab(tab: 'created' | 'saved') {
-    this.activeTab = tab;
+  loadSavedWonders() {
+  this.http.get<any[]>(
+    `http://localhost:8080/api/users/${this.user.id}/bookmarks`
+  ).subscribe(res => {
+    this.savedWonders = res;
+  });
+}
+ setTab(tab: 'created' | 'saved') {
+  this.activeTab = tab;
+  if (tab === 'saved') {
+    this.loadSavedWonders(); // 🔥 important
   }
-
+}
 
 }

@@ -1,9 +1,11 @@
-<div class="modal-backdrop">
+<div class="container">
+  <div class="img">
+    <img src="https://i.pinimg.com/1200x/79/b3/b2/79b3b29830f606447b2dbaf0038b7c51.jpg" alt="">
+  </div>
   <div class="modal-card">
 
     <div class="modal-header">
       <h2>Add a New Wonder</h2>
-      <button class="close-btn">Close</button>
     </div>
 
     <form [formGroup]="wonderForm" (ngSubmit)="submit()"  enctype="multipart/form-data">
