@@ -1,6 +1,8 @@
-<div class="profile-header">
-  <img class="avatar" [src]="user.avatar" alt="profile" />
-
+<div class="profile-header" >
+  <div class="avatar-container">
+  <img class="avatar" [src]="user?.avatar || 'https://i.pravatar.cc/150'" />
+  <input type="file" (change)="onFileSelected($event)" />
+  </div>
   <h1 class="name">{{ user.name }}</h1>
   <div class="username">@{{ user.username }}</div>
 

@@ -120,3 +120,25 @@
   font-weight: 600;
   font-size: 14px;
 }
+.avatar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;   /* 🔥 makes it circular */
+  object-fit: cover;    /* 🔥 prevents stretching */
+
+}
+
+/* Hide input but keep it clickable */
+.avatar-container input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}

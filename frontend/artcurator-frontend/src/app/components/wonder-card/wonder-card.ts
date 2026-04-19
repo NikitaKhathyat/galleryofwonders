@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Wonder } from '../../models/wonder.model';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-wonder-card',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule],
   templateUrl: './wonder-card.html',
   styleUrls: ['./wonder-card.css'],
 })
@@ -52,7 +53,7 @@ export class WonderCard {
   onSave() {
     alert('Save clicked!');
     this.saved = !this.saved;
-    this.saveChanged.emit(this.saved);
+    this.saveChanged.emit(!this.saved);
   }
 
 }

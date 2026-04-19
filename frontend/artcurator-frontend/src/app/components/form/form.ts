@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { jwtDecode } from 'jwt-decode'; 
 import { Component } from '@angular/core';
 import { FormBuilder,FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { WonderService } from '../../services/wonder';
@@ -46,8 +47,16 @@ export class Form {
   }
 
   onFileChange(event: any) {
-    this.selectedFile = event.target.files[0];
+  const file = event.target.files[0];
+
+  if (file.size > 10 * 1024 * 1024) {
+    alert('File size must be under 10MB');
+    return;
   }
+
+  this.selectedFile = file;
+}
+
   uploadImage(file: File) {
   const formData = new FormData();
   formData.append('file', file);
@@ -61,22 +70,53 @@ export class Form {
 
 
  submit() {
-  console.log("hbhjbghjgh");
   console.log('Submitting form with values:', this.wonderForm.value);
   if (this.wonderForm.invalid || !this.selectedFile) return;
-const user = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+  // const storedUser = localStorage.getItem('user');
 let userID = '';
-if(user){
-  try{
-    userID = JSON.parse(user).id;
-  }catch(e){
-    console.error('Error parsing user from localStorage', e);
+
+// if (storedUser) {
+//   try {
+//     const token = JSON.parse(storedUser).token;
+
+//     const decoded: any = jwtDecode(token);
+//     userID = decoded.sub; // 👈 userId comes from JWT
+//     console.log('Decoded userId:', userID);
+
+//   } catch (e) {
+//     console.error('Token decode failed', e);
+//   }
+// }
+
+if (token) {
+    try {
+      const decoded: any = jwtDecode(token);
+      userID = decoded.sub;
+      console.log('Decoded userId:', userID);
+    } catch (e) {
+      console.error('Token decode failed', e);
+    }
   }
-}
-if(!userID){
+  
+if (!userID) {
   alert('User not logged in');
   return;
 }
+
+// const user = localStorage.getItem('user');
+// let userID = '';
+// if(user){
+//   try{
+//     userID = JSON.parse(user).id;
+//   }catch(e){
+//     console.error('Error parsing user from localStorage', e);
+//   }
+// }
+// if(!userID){
+//   alert('User not logged in');
+//   return;
+// }
   this.uploadImage(this.selectedFile).subscribe({
     next: (filename: string) => {
       const payload = {

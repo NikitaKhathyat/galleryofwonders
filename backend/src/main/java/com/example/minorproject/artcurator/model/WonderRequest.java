@@ -10,5 +10,7 @@ public class WonderRequest {
     private String description;
     private List<String> tag;
     private String image;
-    private String userId; // <- frontend sends this
+    private String userId;
+    private String email;
+    // <- frontend sends this
 }

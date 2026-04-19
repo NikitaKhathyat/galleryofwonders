@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { Form } from '../form/form';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -12,7 +14,7 @@ export class Profile implements OnInit {
 
    activeTab: 'created' | 'saved' = 'created';
    savedWonders: any[] = [];
-   user:any = null;
+   user: any = {};
   createdWonders: any[] = [];
 
    constructor(private http: HttpClient,private cd: ChangeDetectorRef) {}
@@ -30,11 +32,18 @@ export class Profile implements OnInit {
   // }
   ngOnInit() {
   const storedUser = localStorage.getItem('user');
-  if (!storedUser) return;
-  this.user = JSON.parse(storedUser);
+  if (storedUser) {
+    this.user = JSON.parse(storedUser);
+  } else {
+    // fallback user (VERY IMPORTANT)
+    this.user = {
+      name: 'Guest',
+      username: 'guest',
+      avatar: ''
+    };
+  }
 
   this.loadCreatedWonders();
-
   // Load saved wonders from localStorage
   const saved = localStorage.getItem('savedWonders');
   if (saved) {
@@ -71,6 +80,35 @@ loadCreatedWonders() {
   if (tab === 'saved') {
     this.loadSavedWonders(); // 🔥 important
   }
+}
+
+selectedFile!: File;
+
+onFileSelected(event: any) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  this.uploadToCloudinary(file);
+}
+
+uploadToCloudinary(file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'my_preset'); //  preset
+
+  this.http.post<any>(
+    'https://api.cloudinary.com/v1_1/dpuwqc6vr/image/upload', // cloud name
+    formData
+  ).subscribe({
+    next: (res) => {
+      console.log(res);
+
+      this.user.avatar = res.secure_url;
+
+      localStorage.setItem('user', JSON.stringify(this.user));
+    },
+    error: (err) => console.error(err)
+  });
 }
 
 }

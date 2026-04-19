@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Wonder } from '../models/wonder.model';
 import { Comment } from '../models/comment.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,19 @@ export class WonderService {
     return this.http.get<Wonder[]>(this.baseUrl);
   }
 
-   createWonder(wonder: any) {
-    return this.http.post(this.baseUrl, wonder);
-  }
+   createWonder(payload: any) {
+  const token = localStorage.getItem('token');
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+
+  return this.http.post(
+    this.baseUrl,
+    payload,
+    { headers }
+  );
+}
 
   addComment(wonderId: string, comment: Comment): Observable<Comment> {
     return this.http.post<Comment>(`${this.baseUrl}/${wonderId}/comments`, comment);

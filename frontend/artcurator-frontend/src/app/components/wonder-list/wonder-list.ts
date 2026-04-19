@@ -66,10 +66,10 @@ constructor(private http: HttpClient,private userService:UserService) {}
 //     ];
 //   }
 
- user = JSON.parse(localStorage.getItem('user')!);
+ user: User = JSON.parse(localStorage.getItem('user') || '{}') || {};
 
 handleLikeChange(liked: boolean, wonder: Wonder) {
-  const currentUser: User = { name: 'You', email: 'you@example.com', avatarUrl: 'https://i.pravatar.cc/150?img=64' };
+  const currentUser: User = this.user;
 
   if (!wonder.likes) wonder.likes = [];
 
@@ -87,7 +87,9 @@ handleLikeChange(liked: boolean, wonder: Wonder) {
   }
 
   isLikedByCurrentUser(wonder: Wonder): boolean {
-  return !!wonder.likes?.some(u => u.name === 'You');
+  return !!wonder.likes?.some(
+    u => u.email === this.user.email
+  );
 }
 
 
@@ -129,8 +131,6 @@ handleLikeChange(liked: boolean, wonder: Wonder) {
   if (this.loading || this.page > this.maxPages) return;
 
   this.loading = true;
-
-  setTimeout(() => {
     const newWonders = Array.from(
       { length: this.limit },
       () => this.createRandomWonder()
@@ -139,7 +139,7 @@ handleLikeChange(liked: boolean, wonder: Wonder) {
     this.wonders = [...this.wonders, ...newWonders];
     this.page++;
     this.loading = false;
-  }, 800);
+  
 }
 
 
@@ -168,11 +168,8 @@ handleSaveChange(saved: boolean, wonder: Wonder) {
 }
 
 isSavedByCurrentUser(wonder: Wonder): boolean {
-  return this.user.bookmarked?.some(
-    (w: any) => w.id === wonder.id
-  );
+  return false;
 }
-
 
 
 

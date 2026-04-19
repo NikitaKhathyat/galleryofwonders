@@ -41,7 +41,7 @@ public class WonderController {
         wonder.setTag(request.getTag());
         wonder.setImage(request.getImage());
         // Link the user
-        User user = userRepository.findById(request.getUserId())
+        User user = userRepository.findByEmail(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         wonder.setUser(user);
         Wonder savedWonder = wonderRepository.save(wonder);

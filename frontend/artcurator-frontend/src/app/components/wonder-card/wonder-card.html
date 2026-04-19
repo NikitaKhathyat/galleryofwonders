@@ -1,15 +1,16 @@
 
-<div class="card">
+<div class="card" >
 
   <!-- HEADER -->
   <div class="top">
-    <img class="avatar" [src]="wonder.user.avatarUrl" />
-    <span class="username">{{ wonder.user.name }}</span>
+    <img class="avatar" [src]="wonder?.user?.avatarUrl" />
+<span class="username">{{ wonder?.user?.name }}</span>
+
   </div>
 
   <!-- IMAGE -->
-  <img class="main-img" [src]="wonder.image.url" />
-
+   <!-- <img class="main-img" src="https://picsum.photos/400/600" /> -->
+  <img class="main-img" [src]="wonder?.image?.url" />
   <!-- ACTIONS -->
   <div class="actions">
 
@@ -23,7 +24,7 @@
                  19.58 3 22 5.42 22 8.5
                  c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
       </svg>
-      <span>{{ wonder.likes?.length || 0 }}</span>
+      <span>{{ wonder?.likes?.length || 0 }}</span>
     </button>
 
     <!-- COMMENT -->
@@ -31,7 +32,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" stroke="black" fill="none" stroke-width="2">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       </svg>
-      <span>{{ wonder.comments?.length || 0 }}</span>
+      <span>{{ wonder?.comments?.length || 0 }}</span>
     </button>
 
    <!-- SAVE -->
@@ -42,9 +43,8 @@
   </svg>
 </button>
 
-
   </div>
 
   <!-- TITLE -->
-  <p class="title">{{ wonder.name }}</p>
+  <p class="title">{{ wonder?.name }}</p>
 </div>
